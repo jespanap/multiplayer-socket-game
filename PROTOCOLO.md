@@ -32,8 +32,17 @@ Estructura base: `COMANDO|PARAMETRO1|PARAMETRO2\n`
 * **`EVENT|DESTROYED|id\n`**: Indica que el tiempo de defensa expiró y el recurso ha sido eliminado.
 * **`EVENT|GAMEOVER|ganador\n`**: Fin del juego. Ganador: `A` (Atacante) o `D` (Defensor).
 
-## 4. Servidor HTTP Integrado
-El servidor escucha peticiones web en el mismo puerto. Si recibe una cabecera `GET /`, responderá con un documento HTML que contiene el estado actual de las salas y los jugadores conectados.
+## 4. Interfaz de Monitoreo (Protocolo HTTP Fallback)
+
+El servidor implementa un mecanismo de "Protocol Multiplexing" que permite el monitoreo administrativo mediante cualquier navegador web estándar, sin requerir un cliente de juego especializado.
+
+* **Método:** `GET`
+* **Ruta:** `/`
+* **Cabecera de Respuesta:** `HTTP/1.1 200 OK`
+* **Tipo de Contenido:** `text/html`
+* **Función:** Proporcionar una vista en tiempo real del estado de las 3 salas, el número de jugadores conectados y si la partida está en curso o finalizada.
+
+> **Nota técnica:** El servidor identifica la petición HTTP analizando los primeros 4 bytes del flujo de datos. Si detecta la cadena "GET ", interrumpe el protocolo de juego para servir la página web y cierra la conexión inmediatamente (Stateless).
 
 ## 5. Reglas de Procedimiento (Flujo)
 1. **Conexión:** El cliente establece el socket TCP.
