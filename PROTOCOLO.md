@@ -15,7 +15,7 @@ Estructura base: `COMANDO|PARAMETRO1|PARAMETRO2\n`
 | Comando | Parámetros | Descripción | Respuesta de Éxito | Respuesta de Error |
 | :--- | :--- | :--- | :--- | :--- |
 | `LIST` | (Ninguno) |  Solicita las salas activas. | `ROOMS\|sala1,sala2\n` | `ERR\|NO_ROOMS\n` |
-| `JOIN` | `usuario\|rol\|sala` | Ingresa a una partida.  Rol: 'A' (Atacante) o 'D' (Defensor). | `OK\|JOIN\n` | `ERR\|ROOM_FULL\n` |
+| `JOIN` | `usuario\|sala` | Ingresa a una partida.  Rol: 'A' (Atacante) o 'D' (Defensor). | `OK\|JOIN\n` | `ERR\|ROOM_FULL\n` |
 | `MOVE` | `pos_x\|pos_y` |  Mueve al jugador en el plano. | `OK\|MOVE\n` | `ERR\|OUT_OF_BOUNDS\n` |
 | `SCAN` | (Ninguno) | (Solo Atacante)  Busca recursos críticos cerca. | `OK\|SCAN\|id_recurso\|x\|y\n` | `OK\|SCAN\|NONE\n` |
 | `ATTACK`| `id_recurso` | (Solo Atacante)  Inicia un ataque a un recurso. | `OK\|ATTACK\n` | `ERR\|NOT_FOUND\n` |
